@@ -208,5 +208,12 @@ int main()
             cout << "    No" << endl;
         }
     }
+
+    // Destructor 
+    // cout << "===== Destructor =====" << endl;
+    for (int i = 0; i <= number; i++)
+    {
+        delete queue[i];
+    }
     return 0;
 }
