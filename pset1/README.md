@@ -1,6 +1,6 @@
 ### OS:
 
-Mac
+macOS Sierra (Version 10.12.6)
 
 ### IDE:
 
