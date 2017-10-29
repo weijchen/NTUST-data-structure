@@ -4,7 +4,7 @@
 
 Document the homework made in this class, homework are written in C++.
 
-Feel free to comment, make reference or star!
+Feel free to leave comment, make reference or star!
 
 -
 
