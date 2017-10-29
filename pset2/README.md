@@ -1,9 +1,18 @@
-OS: Mac
-IDE: Sublime 3
-Compiler: g++
+### OS:
 
-Process steps:
+Mac
 
+### IDE:
+
+Sublime 3
+
+### Compiler:
+
+g++
+
+### Process steps:
+
+```
 1. Compile with g++ (g++ *.cpp -o main.out).
 
 2. Execute main.out (./main.out).
@@ -29,3 +38,4 @@ Client 3:       No
 Client 4:       Yes          20
 Client 5:       Yes          17
 Client 6:       No
+```

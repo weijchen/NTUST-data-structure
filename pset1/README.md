@@ -1,9 +1,18 @@
-OS: Mac
-IDE: Eclipse, Sublime 3
-Compiler: g++
+### OS:
 
-Process steps:
+Mac
 
+### IDE:
+
+Eclipse, Sublime 3
+
+### Compiler:
+
+g++
+
+### Process steps:
+
+```
 1. Initial setting - Set maxRows and maxCols
 
 2. Compile with g++ (g++ pset1.cpp -o main.out)
@@ -21,3 +30,4 @@ Process steps:
 8. Decide replay or not (from (5))
 
 0. Shut down program
+```
