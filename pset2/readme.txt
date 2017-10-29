@@ -1,4 +1,4 @@
-OS: Mac
+OS: macOS Sierra (Version 10.12.6)
 IDE: Sublime 3
 Compiler: g++
 
