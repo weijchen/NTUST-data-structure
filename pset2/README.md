@@ -1,4 +1,4 @@
-OS: Mac
+OS: Mac \n
 IDE: Sublime 3
 Compiler: g++
 
