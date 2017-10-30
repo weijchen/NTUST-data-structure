@@ -28,14 +28,29 @@ int main()
         // not reach number limited
         if (number < MAX_CLIENT)
         {
-            cout << "Enter Client " << number+1 << ":" << endl;
-            cout << "Arrive time: " << flush;
-            cin >> arrive_t;
-            while (arrive_t < 0)
+            if (number == 0)
             {
-                cout << "Arrive time can't be nagative!" << endl;
+                cout << "Enter Client " << number+1 << ":" << endl;
                 cout << "Arrive time: " << flush;
-                cin >> arrive_t;  
+                cin >> arrive_t;
+                while (arrive_t < 1)
+                {
+                    cout << "First client arrive time can't be nagative or zero!" << endl;
+                    cout << "Arrive time: " << flush;
+                    cin >> arrive_t;  
+                }
+            }
+            else
+            {
+                cout << "Enter Client " << number+1 << ":" << endl;
+                cout << "Arrive time: " << flush;
+                cin >> arrive_t;
+                while (arrive_t < 0)
+                {
+                    cout << "Arrive time can't be nagative!" << endl;
+                    cout << "Arrive time: " << flush;
+                    cin >> arrive_t;  
+                } 
             }
             cout << "Service time: " << flush;
             cin >> service_t;
@@ -184,7 +199,7 @@ int main()
                 queue[i-1]->set_depart(cur_t);
             } 
         }
-        
+
         // Check last client
         if (queue[number]->get_arrive() + queue[number]->get_allowable() > cur_t)
         {
