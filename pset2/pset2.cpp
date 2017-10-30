@@ -31,10 +31,28 @@ int main()
             cout << "Enter Client " << number+1 << ":" << endl;
             cout << "Arrive time: " << flush;
             cin >> arrive_t;
+            while (arrive_t < 0)
+            {
+                cout << "Arrive time can't be nagative!" << endl;
+                cout << "Arrive time: " << flush;
+                cin >> arrive_t;  
+            }
             cout << "Service time: " << flush;
             cin >> service_t;
+            while (service_t < 0)
+            {
+                cout << "Service time can't be nagative!" << endl;
+                cout << "Service time: " << flush;
+                cin >> service_t; 
+            }
             cout << "Allowable waiting time: " << flush;
             cin >> allowable_t;
+            while (allowable_t < 0)
+            {
+                cout << "Allowable wating time can't be nagative!" << endl;
+                cout << "Allowable wating time: " << flush;
+                cin >> allowable_t;  
+            }
             queue[number] = new Client((number+1), arrive_t, service_t, allowable_t, serve_check, depart_t);
             
             // whether exist new client
@@ -75,7 +93,7 @@ int main()
     // if two clients
     if (number == 1)
     {
-        if (queue[1]->get_arrive() + queue[1]->get_allowable() >= cur_t)
+        if (queue[1]->get_arrive() + queue[1]->get_allowable() > cur_t)
         {
             cur_t += queue[1]->get_service();
             queue[1]->set_serve(1);
@@ -98,7 +116,7 @@ int main()
             {
                 // cout << "===== Case 1 =====" << endl;
                 // client arrives before prev finish is available to wait
-                if (queue[i-1]->get_arrive() + queue[i-1]->get_allowable() >= cur_t)
+                if (queue[i-1]->get_arrive() + queue[i-1]->get_allowable() > cur_t)
                 {
                     cur_t += queue[i-1]->get_service();
                     queue[i-1]->set_serve(1);
@@ -122,10 +140,10 @@ int main()
                 }
                 else
                 {
-                    if (queue[i]->get_arrive() + queue[i]->get_allowable() >= cur_t)
+                    if (queue[i]->get_arrive() + queue[i]->get_allowable() > cur_t)
                     {
                         // if second client can move a position forward
-                        if (cur_t + queue[i]->get_service() <= queue[i-1]->get_arrive() + queue[i-1]->get_allowable())
+                        if (cur_t + queue[i]->get_service() < queue[i-1]->get_arrive() + queue[i-1]->get_allowable())
                         {
                             Client *temp = queue[i];
                             queue[i] = queue[i-1];
@@ -137,7 +155,7 @@ int main()
                     }
                     else
                     {
-                        if (queue[i-1]->get_arrive() + queue[i-1]->get_allowable() >= cur_t)
+                        if (queue[i-1]->get_arrive() + queue[i-1]->get_allowable() > cur_t)
                         {
                             cur_t += queue[i-1]->get_service();
                             queue[i-1]->set_serve(1);
@@ -166,20 +184,21 @@ int main()
                 queue[i-1]->set_depart(cur_t);
             } 
         }
+        
+        // Check last client
+        if (queue[number]->get_arrive() + queue[number]->get_allowable() > cur_t)
+        {
+            cur_t += queue[number]->get_service();
+            queue[number]->set_serve(1);
+            queue[number]->set_depart(cur_t);
+        }
+        else
+        {
+            queue[number]->set_serve(0);
+            queue[number]->set_depart(0); 
+        }
     }
 
-    // Check last client
-    if (queue[number]->get_arrive() + queue[number]->get_allowable() >= cur_t)
-    {
-        cur_t += queue[number]->get_service();
-        queue[number]->set_serve(1);
-        queue[number]->set_depart(cur_t);
-    }
-    else
-    {
-        queue[number]->set_serve(0);
-        queue[number]->set_depart(0); 
-    }
 
     // Sort id
     for (int i = 1; i <= number; i++)
