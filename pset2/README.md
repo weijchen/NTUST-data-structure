@@ -18,6 +18,10 @@ g++
 2. Execute main.out (./main.out).
 
 3. Enter Client's information (arrive time, serve time, allowable wating time).
+PS:
+* First client can't arrive at time 0
+* Value of three time can't be negative
+
 Ex:
 Enter Client 1:
 Arrive time: 3
