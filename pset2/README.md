@@ -17,23 +17,36 @@ g++
 
 2. Execute main.out (./main.out).
 
-3. Enter Client's information (arrive time, serve time, allowable wating time).
+3. Enter the number of client.
+
+4. Enter Client's information (arrive time, serve time, allowable wating time).
 PS:
 * First client can't arrive at time 0
 * Value of three time can't be negative
 
+5. After entering clients, show serving results.
+
 Ex:
+g++ *.cpp -o main.out
+./main.out
+
+How many clients? > 6
+
 Enter Client 1:
 Arrive time: 3
 Service time: 5
 Allowable waiting time: 7
+..
+..
+..
+Enter Client 6:
+Arrive time: 16
+Service time: 6
+Allowable waiting time: 3
 
-4. Exist new client, type 'Y' or 'y', otherwise, type 'N' or 'n' (client were limited to a maximum number of 10)
-Ex:
-Enter Client? (Y/N) > y
+Reach client number limited!
+Begin program? (Y/N) > y
 
-5. After entering clients, show serving results.
-Ex:
 ===== Final results =====
         Served or not?  Departure time
 Client 1:       Yes          8

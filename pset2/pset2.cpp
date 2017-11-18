@@ -6,14 +6,16 @@
 #include <iostream>
 #include "Client.h"
 
-#define MAX_CLIENT 10
-
 using namespace std;
 
 int main()
 {
+    int cli_num;
+    cout << "How many clients? > ";
+    cin >> cli_num;
+
     // Initialize Variables
-    Client* queue[MAX_CLIENT] = {};
+    Client* queue[cli_num];
     int cur_t = 0;
     int number = 0;
     int arrive_t, service_t, allowable_t;
@@ -22,82 +24,61 @@ int main()
     bool newClient = true;
     char ans_entclient, ans_begin;
 
-    // enter clients' information
-    while (newClient)
+    while (number < cli_num)
     {
-        // not reach number limited
-        if (number < MAX_CLIENT)
+        if (number == 0)
         {
-            if (number == 0)
+            cout << "Enter Client " << number+1 << ":" << endl;
+            cout << "Arrive time: " << flush;
+            cin >> arrive_t;
+            while (arrive_t < 1)
             {
-                cout << "Enter Client " << number+1 << ":" << endl;
+                cout << "First client arrive time can't be nagative or zero!" << endl;
                 cout << "Arrive time: " << flush;
-                cin >> arrive_t;
-                while (arrive_t < 1)
-                {
-                    cout << "First client arrive time can't be nagative or zero!" << endl;
-                    cout << "Arrive time: " << flush;
-                    cin >> arrive_t;  
-                }
+                cin >> arrive_t;  
             }
-            else
-            {
-                cout << "Enter Client " << number+1 << ":" << endl;
-                cout << "Arrive time: " << flush;
-                cin >> arrive_t;
-                while (arrive_t < 0)
-                {
-                    cout << "Arrive time can't be nagative!" << endl;
-                    cout << "Arrive time: " << flush;
-                    cin >> arrive_t;  
-                } 
-            }
-            cout << "Service time: " << flush;
-            cin >> service_t;
-            while (service_t < 0)
-            {
-                cout << "Service time can't be nagative!" << endl;
-                cout << "Service time: " << flush;
-                cin >> service_t; 
-            }
-            cout << "Allowable waiting time: " << flush;
-            cin >> allowable_t;
-            while (allowable_t < 0)
-            {
-                cout << "Allowable wating time can't be nagative!" << endl;
-                cout << "Allowable wating time: " << flush;
-                cin >> allowable_t;  
-            }
-            queue[number] = new Client((number+1), arrive_t, service_t, allowable_t, serve_check, depart_t);
-            
-            // whether exist new client
-            cout << "Enter Client? (Y/N) > " << flush;
-            cin >> ans_entclient;
-            if (ans_entclient == 'N' || ans_entclient == 'n')
-            {
-                newClient = false;
-            }
-            else
-            {
-                cout << endl;
-                newClient = true;
-                number++;
-            } 
         }
-        // reach number limited
         else
         {
-            cout << "Reach client number limited!" << endl;
-            cout << "Begin program? (Y/N) > " << flush;
-            cin >> ans_begin;
-            if (ans_begin != 'Y' && ans_begin != 'y')
+            cout << "Enter Client " << number+1 << ":" << endl;
+            cout << "Arrive time: " << flush;
+            cin >> arrive_t;
+            while (arrive_t < 0)
             {
-                return 0;
-            }
-            number--;
-            newClient = false;
+                cout << "Arrive time can't be nagative!" << endl;
+                cout << "Arrive time: " << flush;
+                cin >> arrive_t;  
+            } 
         }
+        cout << "Service time: " << flush;
+        cin >> service_t;
+        while (service_t < 0)
+        {
+            cout << "Service time can't be nagative!" << endl;
+            cout << "Service time: " << flush;
+            cin >> service_t; 
+        }
+        cout << "Allowable waiting time: " << flush;
+        cin >> allowable_t;
+        while (allowable_t < 0)
+        {
+            cout << "Allowable wating time can't be nagative!" << endl;
+            cout << "Allowable wating time: " << flush;
+            cin >> allowable_t;  
+        }
+        queue[number] = new Client((number+1), arrive_t, service_t, allowable_t, serve_check, depart_t);
+        number++;
+        cout << endl;
     }
+    // reach number limited
+    cout << "Reach client number limited!" << endl;
+    cout << "Begin program? (Y/N) > " << flush;
+    cin >> ans_begin;
+    if (ans_begin != 'Y' && ans_begin != 'y')
+    {
+        return 0;
+    }
+    number--;
 
     // insert first client
     cur_t = queue[0]->get_arrive() + queue[0]->get_service();
@@ -126,10 +107,10 @@ int main()
     {
         for (int i = 2; i <= number; i++)
         {
+            // cout << "===== Case 1 =====" << endl;
             // One client arrives before prev finish and the other not
             if (queue[i-1]->get_arrive() < cur_t && queue[i]->get_arrive() > cur_t)
             {
-                // cout << "===== Case 1 =====" << endl;
                 // client arrives before prev finish is available to wait
                 if (queue[i-1]->get_arrive() + queue[i-1]->get_allowable() > cur_t)
                 {
@@ -144,10 +125,10 @@ int main()
                     queue[i-1]->set_depart(0); 
                 }
             }
+            // cout << "===== Case 2 =====" << endl;
             // Both clients arrive before prev finish
             else if (queue[i-1]->get_arrive() < cur_t && queue[i]->get_arrive() < cur_t)
             {
-                // cout << "===== Case 2 =====" << endl;
                 if (queue[i-1]->get_arrive() + queue[i-1]->get_allowable() < cur_t)
                 {
                     queue[i-1]->set_serve(0);
@@ -184,17 +165,11 @@ int main()
                     }
                 }
             }
+            // // cout << "===== Case 3 =====" << endl;
+            // Both arrive after prev finish
             else if (queue[i-1]->get_arrive() > cur_t && queue[i]->get_arrive() > cur_t)
             {
-                // cout << "===== Case 3 =====" << endl;
-                // if second client can move a position forward
-                if (cur_t + queue[i]->get_service() < queue[i-1]->get_arrive() + queue[i-1]->get_allowable())
-                {
-                    Client *temp = queue[i];
-                    queue[i] = queue[i-1];
-                    queue[i-1] = temp;
-                }
-                cur_t += queue[i-1]->get_service();
+                cur_t = queue[i-1]->get_arrive() + queue[i-1]->get_service();
                 queue[i-1]->set_serve(1);
                 queue[i-1]->set_depart(cur_t);
             } 
@@ -203,9 +178,9 @@ int main()
         // Check last client
         if (queue[number]->get_arrive() + queue[number]->get_allowable() > cur_t)
         {
-            cur_t += queue[number]->get_service();
+            int time_ = max(cur_t + queue[number]->get_service(), queue[number]->get_arrive() + queue[number]->get_service());
             queue[number]->set_serve(1);
-            queue[number]->set_depart(cur_t);
+            queue[number]->set_depart(time_);
         }
         else
         {
