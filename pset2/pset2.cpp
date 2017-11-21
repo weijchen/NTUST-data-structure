@@ -189,7 +189,6 @@ int main()
         }
     }
 
-
     // Sort id
     for (int i = 1; i <= number; i++)
     {

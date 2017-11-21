@@ -28,15 +28,4 @@ public:
     ~Client(void);
 };
 
-
-    // bool IsEmpty();
-    // bool IsFull();
-    // // T& Front() const;
-    // // T& Rear() const;
-    // void enqueue(int);<std::array<int, N> >
-    // // void enqueue(const T& item);
-    // int dequeue();
-    // int size();
-    // void display();
-
 #endif /* CLIENT_H_ */
