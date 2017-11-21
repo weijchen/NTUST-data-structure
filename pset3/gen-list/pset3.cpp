@@ -1,21 +1,19 @@
 //============================================================================
 // Name        : pset3.cpp
 // Author      : Jimmy
-// Description : Polynomial operations
+// Description : Generalized list for polynomial operations
 //============================================================================
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
 #include "Poly.h"
-
 using namespace std;
 
 vector <string> tokenizer(string input);
 
 int main()
 {
-
     bool enter = true, start = true;
     PolyList plist;
     while(enter)
@@ -49,7 +47,6 @@ int main()
         cout << "===== Choose function =====" << endl;
         cout << "1. retCoeff(ex, ey, ez)" << endl;
         cout << "2. Mulf(ex, ey, ez)" << endl;
-        cout << "3. printList()" << endl;
         cout << "0. Quit" << endl;
         cout << "> ";
         cin >> func;
@@ -89,10 +86,6 @@ int main()
                 plist.Mulf(stoi(second_ans[0]), stoi(second_ans[1]), stoi(second_ans[2]));
             }
         }
-        else if (func == 3)
-        {
-            plist.printList();
-        }
         else if (func == 0)
         {
             cout << "Program shutdown." << endl;
@@ -103,7 +96,9 @@ int main()
             cout << "No such function, retry." << endl; 
         }
     }
-}
+    
+    return 0;
+};
 
 vector <string> tokenizer(string input)
 {
