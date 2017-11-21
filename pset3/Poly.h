@@ -11,7 +11,6 @@ class PolyList
 private:
     PolyNode *first;
 public:
-    // methods
     PolyList():first(0){};
     void push(int coff, int x, int y, int z);
     void retCoeff(int x, int y, int z);
