@@ -11,8 +11,8 @@
 using namespace std;
 
 // initial setting
-#define maxRows 10
-#define maxCols 10
+#define maxRows 5
+#define maxCols 5
 
 // Arrays use for change n, e, w, s directions
 int rowNum[] = { -1, 0, 0, 1 };
