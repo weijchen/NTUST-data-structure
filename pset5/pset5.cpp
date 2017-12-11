@@ -1,7 +1,7 @@
 //============================================================================
-// Name        : pset4.cpp
+// Name        : pset5.cpp
 // Author      : Jimmy
-// Description : BST-minelement
+// Description : BST-avg
 //============================================================================
 #include <iostream>
 #include "BST.h"
@@ -28,6 +28,7 @@ int main()
             obj.access(val);
         }
     }
+    obj.adjust();
 
     while(1)
     {
@@ -35,7 +36,7 @@ int main()
         puts("1. Insert");
         puts("2. Delete");
         puts("3. Show");
-        puts("4. Minelement");
+        puts("4. Avg");
         puts("5. Root val");
         puts("6. Quit");
         puts("********************");
@@ -47,10 +48,12 @@ int main()
         {
             case '1':
                 obj.insert_f();
+                obj.adjust();
                 puts("");
                 break;
             case '2':
                 obj.delete_f();
+                obj.adjust();
                 puts("");
                 break;
             case '3':
@@ -58,7 +61,7 @@ int main()
                 puts("");
                 break;
             case '4':
-                obj.minelement_f();
+                obj.avg();
                 puts("");
                 break;
             case '5':
@@ -67,7 +70,6 @@ int main()
                 break;
             case '6':
                 exit(0);
-
             default:
                 puts("Wrong option!");
         }

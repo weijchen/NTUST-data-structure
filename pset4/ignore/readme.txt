@@ -8,21 +8,28 @@ Process steps:
 
 2. Execute main.out (./main.out).
 
-3. Choose function.
-3-1. Insert
-3-2. Delete
-3-3. Minelement
-3-4. Show (print tree node with inorder sequence)
-3-5. Quit
-3-6. Root val (print root value)
+3. Enter sequence of node, type 'Q' or 'q' to quit.
 
-PS. For the question in the homework, use (1) for six times, then use (3) and enter 91, 50 will be printed out.
+4. Choose function.
+4-1. Insert
+4-2. Delete
+4-3. Show
+4-4. Minelement
+4-5. Root val (print root value)
+4-6. Quit
 
 Ex:
 g++ *.cpp -o main.out
 ./main.out
 
 BST created!
+Enter node, Q to quit > 12
+Enter node, Q to quit > 34
+Enter node, Q to quit > 43
+Enter node, Q to quit > 50
+Enter node, Q to quit > 66
+Enter node, Q to quit > 68
+Enter node, Q to quit > q
 ********************
 1. Insert
 2. Delete
@@ -31,23 +38,15 @@ BST created!
 5. Quit
 6. Root val
 ********************
-Enter your choice: 1
+Enter your choice: 4
 
-Enter node val: 12
-.
-.
-.
-********************
-1. Insert
-2. Delete
-3. Minelement
-4. Show
-5. Quit
-6. Root val
-********************
-Enter your choice: 1
-
-Enter node val: 68
+===== Show Data =====
+12
+34
+43
+50
+66
+68
 
 ********************
 1. Insert
@@ -61,33 +60,3 @@ Enter your choice: 3
 
 Enter threshold val: 91
 50
-
-[Delete]
-********************
-1. Insert
-2. Delete
-3. Minelement
-4. Show
-5. Quit
-6. Root val
-********************
-Enter your choice: 2
-
-Enter delete node: 34
-
-********************
-1. Insert
-2. Delete
-3. Minelement
-4. Show
-5. Quit
-6. Root val
-********************
-Enter your choice: 4
-
-===== Show Data =====
-12
-43
-50
-66
-68
