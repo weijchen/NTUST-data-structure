@@ -10,6 +10,10 @@ Sublime 3
 
 g++
 
+### Keyword:
+
+queue, line-up
+
 ### Process steps:
 
 ```

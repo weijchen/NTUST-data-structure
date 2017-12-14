@@ -10,6 +10,10 @@ Eclipse, Sublime 3
 
 g++
 
+### Keyword:
+
+string pattern, matrix, reuse
+
 ### Process steps:
 
 ```
